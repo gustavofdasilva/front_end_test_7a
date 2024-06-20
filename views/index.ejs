@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>front_end_test_7a</title>
+    <link rel="stylesheet" href="/public/style.css" type="text/css">
+</head>
+<body>
+    <nav>
+        <div id="quantity-field">
+            <label for="input">Quantity: </label>
+            <input 
+                type="number" 
+                name="input" 
+                id="input" 
+                placeholder="Type here" 
+                oninput="value = event.target.value; refreshItems(value)"
+                >
+        </div>
+    </nav>
+
+    <div id="items-container">
+        <main> <!--Where items gonna be rendered--> </main>
+    </div> 
+
+    <script>
+        function refreshItems(value) {
+            let main = document.querySelector("main");
+            main.innerHTML='' //Reseting inner html in main
+
+            for(let i = 0; i < value; i++) {
+                let item = document.createElement('div');
+                    item.classList.add('item');
+                let span = document.createElement('span');
+                    span.classList.add('circle');
+                let p = document.createElement('p');
+                    p.innerText = `${i+1}`;
+                span.appendChild(p);
+                item.appendChild(span);
+                main.appendChild(item);
+            }
+        }
+
+        let initialValue = '<%=value%>'
+        refreshItems(initialValue)
+    </script>
+</html>
